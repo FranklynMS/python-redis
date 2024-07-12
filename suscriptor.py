@@ -1,9 +1,14 @@
 import redis
+import os
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde el archivo .env
+load_dotenv()
 
 # Configuración de Redis
-redis_host = 'redis-14100.c263.us-east-1-2.ec2.redns.redis-cloud.com'
-redis_port = 14100  # Cambia al puerto correspondiente
-redis_password = 'zgC4nA1hE1N5oFEDGsdp6PHZSJNOEki1'
+redis_host = os.getenv('REDIS_HOST')
+redis_port = int(os.getenv('REDIS_PORT'))
+redis_password = os.getenv('REDIS_PASSWORD')
 
 # Conexión a Redis
 redis_client = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True)
